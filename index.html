@@ -168,5 +168,114 @@ let scrollFrame=0;
 window.addEventListener('scroll',()=>{if(!scrollFrame)scrollFrame=requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;progressLine.style.transform=`scaleX(${max>0?scrollY/max:0})`;scrollFrame=0})},{passive:true});
 document.querySelectorAll('.rule-group').forEach(group=>group.addEventListener('toggle',()=>{if(group.open){document.querySelectorAll('.rule-group').forEach(other=>{if(other!==group)other.open=false})}}));
 </script>
+  
+<style>
+  #colonyMusicPlayer {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    background: rgba(12, 10, 24, 0.94);
+    color: #fff;
+    border: 1px solid #873cff;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(135, 60, 255, 0.3);
+    font-family: inherit;
+    backdrop-filter: blur(10px);
+  }
+
+  #colonyMusicPlayer button {
+    background: #873cff;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 10px 13px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  #colonyMusicPlayer button:hover {
+    background: #a66aff;
+  }
+
+  #colonyMusicPlayer input {
+    width: 80px;
+    accent-color: #a66aff;
+    cursor: pointer;
+  }
+
+  #colonyMusicPlayer .music-label {
+    font-size: 12px;
+    color: #cdb5ff;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 480px) {
+    #colonyMusicPlayer {
+      right: 10px;
+      bottom: 10px;
+      gap: 8px;
+      padding: 10px;
+    }
+
+    #colonyMusicPlayer input {
+      width: 58px;
+    }
+  }
+</style>
+
+<div id="colonyMusicPlayer">
+  <button id="musicToggle" type="button">▶</button>
+  <div>
+    <div class="music-label">THE COLONY</div>
+    <div id="musicStatus">Música pausada</div>
+  </div>
+  <input id="musicVolume" type="range"
+         min="0" max="1" step="0.01"
+         value="0.35" aria-label="Volumen">
+</div>
+
+<audio id="colonyMusic" loop preload="none">
+  <source src="assets/colony-song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const colonyMusic = document.getElementById("colonyMusic");
+  const musicToggle = document.getElementById("musicToggle");
+  const musicVolume = document.getElementById("musicVolume");
+  const musicStatus = document.getElementById("musicStatus");
+
+  colonyMusic.volume = 0.35;
+
+  musicToggle.addEventListener("click", async () => {
+    if (colonyMusic.paused) {
+      try {
+        await colonyMusic.play();
+        musicToggle.textContent = "Ⅱ";
+        musicStatus.textContent = "Reproduciendo";
+      } catch (error) {
+        musicStatus.textContent = "No se pudo cargar el audio";
+      }
+    } else {
+      colonyMusic.pause();
+      musicToggle.textContent = "▶";
+      musicStatus.textContent = "Música pausada";
+    }
+  });
+
+  musicVolume.addEventListener("input", () => {
+    colonyMusic.volume = Number(musicVolume.value);
+  });
+
+  colonyMusic.addEventListener("ended", () => {
+    musicToggle.textContent = "▶";
+    musicStatus.textContent = "Música pausada";
+  });
+</script>
+
 </body>
 </html>
