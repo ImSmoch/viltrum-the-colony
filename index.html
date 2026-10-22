@@ -467,6 +467,318 @@ html{scroll-behavior:smooth}
 }
 </style>
 
+<!-- EVENTOS DINÁMICOS THE COLONY -->
+<section id="eventos-dinamicos" class="colony-events">
+  <div class="ce-heading">
+    <span class="ce-kicker">THE COLONY / FENÓMENOS</span>
+    <h2>EVENTOS <span>DINÁMICOS</span></h2>
+    <p>Fenómenos que pueden cambiar el curso de tu supervivencia.</p>
+  </div>
+
+  <div class="ce-grid">
+
+    <article class="ce-card ce-storm">
+      <div class="ce-image">
+        <img src="assets/tormenta-electrica.png"
+             alt="Tormenta eléctrica sobre la colonia"
+             loading="lazy">
+        <span class="ce-number">EVENTO 001</span>
+        <span class="ce-symbol">ϟ</span>
+      </div>
+      <div class="ce-body">
+        <span class="ce-type">FENÓMENO CLIMÁTICO</span>
+        <h3>Tormenta eléctrica</h3>
+        <p>Una tormenta cubre la superficie de la colonia. Los rayos caen en distintos puntos del terreno y convierten las zonas expuestas en lugares peligrosos.</p>
+        <div class="ce-detail">
+          <span>EFECTO</span>
+          <p>Caída de rayos en áreas del terreno.</p>
+        </div>
+        <div class="ce-detail">
+          <span>RECOMENDACIÓN</span>
+          <p>Busca refugio y evita permanecer en zonas expuestas.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="ce-card ce-fog">
+      <div class="ce-image">
+        <img src="assets/neblina-toxica.png"
+             alt="Neblina tóxica en una zona de la colonia"
+             loading="lazy">
+        <span class="ce-number">EVENTO 002</span>
+        <span class="ce-symbol">☣</span>
+      </div>
+      <div class="ce-body">
+        <span class="ce-type">CONTAMINACIÓN AMBIENTAL</span>
+        <h3>Neblina tóxica</h3>
+        <p>Una densa niebla verdosa invade determinadas zonas de la colonia, dificulta la exploración y advierte de un peligro ambiental.</p>
+        <div class="ce-detail">
+          <span>EFECTO</span>
+          <p>Visibilidad reducida en las áreas afectadas.</p>
+        </div>
+        <div class="ce-detail">
+          <span>RECOMENDACIÓN</span>
+          <p>Evita la zona contaminada hasta que sea seguro regresar.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="ce-card ce-meteor">
+      <div class="ce-image">
+        <img src="assets/lluvia-meteoritos.png"
+             alt="Lluvia de meteoritos impactando la colonia"
+             loading="lazy">
+        <span class="ce-number">EVENTO 003</span>
+        <span class="ce-symbol">✦</span>
+      </div>
+      <div class="ce-body">
+        <span class="ce-type">IMPACTO / DESASTRE</span>
+        <h3>Lluvia de meteoritos</h3>
+        <p>Fragmentos incandescentes caen del cielo e impactan la superficie, creando zonas de peligro que pueden alterar la exploración.</p>
+        <div class="ce-detail">
+          <span>EFECTO</span>
+          <p>Impactos en distintos puntos del terreno.</p>
+        </div>
+        <div class="ce-detail">
+          <span>RECOMENDACIÓN</span>
+          <p>Mantente alerta y aléjate de los puntos de impacto.</p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="ce-footer">
+    <span class="ce-live-dot"></span>
+    <span>ARCHIVO DE FENÓMENOS DE LA COLONIA</span>
+  </div>
+</section>
+
+<style>
+.colony-events {
+  --ce-purple: #b58aff;
+  --ce-cyan: #9df5ff;
+  padding: 78px 24px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, #34204d66, transparent 65%),
+    #08070c;
+  border-top: 1px solid #30263d;
+  border-bottom: 1px solid #30263d;
+}
+
+.ce-heading {
+  max-width: 760px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+
+.ce-kicker {
+  color: var(--ce-cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.ce-heading h2 {
+  color: #f7f4fb;
+  font-size: clamp(30px, 5vw, 49px);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  margin: 15px 0 10px;
+}
+
+.ce-heading h2 span {
+  color: var(--ce-purple);
+  text-shadow: 0 0 24px #b58aff44;
+}
+
+.ce-heading > p {
+  color: #b1a8bd;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.ce-grid {
+  width: min(1120px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.ce-card {
+  min-width: 0;
+  overflow: hidden;
+  background: linear-gradient(155deg, #12101b, #0b0a10);
+  border: 1px solid #382c49;
+  border-radius: 12px;
+  transition: transform .3s ease, border-color .3s ease,
+              box-shadow .3s ease;
+  animation: ceAppear .8s both;
+}
+
+.ce-card:nth-child(2) { animation-delay: .15s; }
+.ce-card:nth-child(3) { animation-delay: .3s; }
+
+.ce-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--ce-purple);
+  box-shadow: 0 12px 35px #8e56d51c, 0 0 20px #b58aff0b;
+}
+
+.ce-image {
+  height: 205px;
+  position: relative;
+  overflow: hidden;
+  background: #15101e;
+}
+
+.ce-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, #08070c10 35%, #08070cdd);
+}
+
+.ce-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .7s ease, filter .4s ease;
+}
+
+.ce-card:hover .ce-image img {
+  transform: scale(1.07);
+  filter: brightness(1.12);
+}
+
+.ce-number {
+  position: absolute;
+  z-index: 1;
+  top: 13px;
+  left: 13px;
+  padding: 7px 9px;
+  color: #fff;
+  background: #08070ccc;
+  border: 1px solid #b58aff66;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.ce-symbol {
+  position: absolute;
+  z-index: 1;
+  right: 17px;
+  bottom: 6px;
+  color: var(--ce-purple);
+  font-size: 45px;
+  text-shadow: 0 0 22px #b58aff88;
+}
+
+.ce-storm .ce-symbol { color: #c6a5ff; }
+.ce-fog .ce-symbol { color: #9ceab9; }
+.ce-meteor .ce-symbol { color: #ffad84; }
+
+.ce-body {
+  padding: 22px 20px 24px;
+}
+
+.ce-type {
+  color: var(--ce-cyan);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.ce-body h3 {
+  color: #f7f4fb;
+  font-size: 21px;
+  margin: 10px 0 12px;
+}
+
+.ce-body > p {
+  color: #b1a8bd;
+  font-size: 12px;
+  line-height: 1.85;
+  min-height: 88px;
+}
+
+.ce-detail {
+  padding-top: 13px;
+  margin-top: 13px;
+  border-top: 1px solid #30263d;
+}
+
+.ce-detail span {
+  color: var(--ce-purple);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.ce-detail p {
+  margin: 6px 0 0;
+  color: #d0cad9;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.ce-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  color: #8d829e;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.ce-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ce-purple);
+  box-shadow: 0 0 12px var(--ce-purple);
+  animation: ceBlink 1.5s infinite alternate;
+}
+
+@keyframes ceAppear {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ceBlink {
+  from { opacity: .4; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 850px) {
+  .ce-grid { grid-template-columns: 1fr; max-width: 540px; }
+  .ce-image { height: 240px; }
+  .ce-body > p { min-height: 0; }
+}
+
+@media (max-width: 500px) {
+  .colony-events { padding: 55px 16px; }
+  .ce-image { height: 200px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ce-card, .ce-card *, .ce-live-dot {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+
 <section id="guia"><div class="wrap"><div class="section-head reveal"><div class="kicker">01 / LA COLONIA</div><h2>Empieza arriba.<br>Baja bajo tu riesgo.</h2><p>Todos comienzan en el spawn. Consigue madera y recursos básicos, prepara tu equipo y encuentra la entrada a las cuevas. Cuanto más desciendas, mayores serán las oportunidades y los peligros.</p></div>
 <div class="grid">
 <article class="card wide reveal"><div class="num">01 — PREPARACIÓN</div><h3>Los primeros recursos</h3><p>Comienza en el spawn y reúne madera y otros recursos básicos. Prepárate antes de descender: cada decisión puede marcar la diferencia entre avanzar o perder una vida.</p></article>
